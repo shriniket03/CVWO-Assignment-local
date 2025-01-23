@@ -20,9 +20,10 @@ You may find a template env file (.env.example) in the root of the repository.
 
 The SECRET variable is used for the signing of JWT Tokens (for user authentication). The parameter has already been assigned in the example file. 
 
-The DATABASE_URI variable is used to connect with the PostgreSQL database that has been hosted on the cloud. The value has been omitted to prevent misuse. 
+The DATABASE_URI variable is used to connect with the PostgreSQL database that has been hosted on the cloud. The value has been omitted to prevent misuse.
+Please refer to the Google Form submission for the secret key to be assigned to this DATABASE_URI Environment Variable 
 
-Once both the DATABASE_URI & SECRET variable are assigned, you may rename the (.env.example) file to (.env) and proceed to install the other dependencies.
+Once both the DATABASE_URI & SECRET variable are assigned, you may rename the (.env.example) file to (.env) and proceed with the following steps to install the other dependencies.
 
 ### Dependencies (Front-End)
 
