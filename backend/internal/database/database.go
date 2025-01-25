@@ -40,7 +40,63 @@ func GetDB() (*Database, error) {
 	}
 	fmt.Println("Successfully connected!")
 	if err != nil {
-		panic(err)
+		return nil, err
+	}
+
+	_, err = InitTables(db)
+	if err != nil {
+		return nil, err
 	}
 	return &Database{Ref:db}, nil
+}
+
+func InitTables(db *sql.DB) (string, error) {
+	queryUser := `CREATE TABLE IF NOT EXISTS Users (
+		id SERIAL PRIMARY KEY,
+		name TEXT NOT NULL, 
+		username TEXT NOT NULL, 
+		password TEXT NOT NULL
+		)`
+
+	_, err := db.Exec(queryUser)
+	
+	if err != nil {
+		return "", err
+	}
+
+	queryPost := `CREATE TABLE IF NOT EXISTS Posts (
+		id SERIAL PRIMARY KEY,
+		author INT, 
+		tag TEXT NOT NULL, 
+		content TEXT NOT NULL,
+		category TEXT NOT NULL,
+		likes INT,
+		time BIGINT, 
+		CONSTRAINT fk_Author FOREIGN KEY(author) REFERENCES Users(id)
+		)`
+	
+	_, err = db.Exec(queryPost)
+	
+	if err != nil {
+		return "", err
+	}
+
+	queryComment := `CREATE TABLE IF NOT EXISTS Comments (
+		id SERIAL PRIMARY KEY,
+		author INT, 
+		post INT, 
+		content TEXT NOT NULL,
+		time BIGINT, 
+		CONSTRAINT fk_Author FOREIGN KEY(author) REFERENCES Users(id),
+		CONSTRAINT fk_Post FOREIGN KEY(post) REFERENCES Posts(id)
+		)`
+	
+	_, err = db.Exec(queryComment)
+
+	if err != nil {
+		return "", err
+	}
+	
+
+	return "success", nil
 }

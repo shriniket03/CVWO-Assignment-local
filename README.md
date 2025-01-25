@@ -22,7 +22,32 @@ The SECRET variable is used for the signing of JWT Tokens (for user authenticati
 
 The DATABASE_URI variable is used to connect with the PostgreSQL database that has been hosted on the cloud. The value has been omitted to prevent misuse. 
 
-Once both the DATABASE_URI & SECRET variable are assigned, you may rename the (.env.example) file to (.env) and proceed to install the other dependencies.
+#### Dependencies (Using a PostgreSQL DB hosted on the cloud)
+
+To setup a local build, you will have to create your own PostgreSQL DB and set the value of DATABASE_URI as the secret key. 
+
+The cloud service used to host the DB (for deployment) was Aiven Cloud. For the purpose of setting up a local environment, you can create a DB on the platform
+as well. No credit card/payment details are required. Create an account and login to the console.
+
+Section 1: How do you plan to use Aiven (Select PERSONAL)
+Proceed with the default names provided and click continue to setup your DB
+
+Section 2: Create new service (Choose PostgreSQL - Should be second (from the left) option in the first row )
+
+Section 3: Choose the Free Plan and proceed with the default settings. Once done, you may click on "Create Free Service" in a pop-up on the right
+
+Section 4: Once done, it will prompt you to secure connection/add any add-ins. You may click "Skip this Step" on the bottom until the end and then click on
+"Finish Setup" to conclude the setup
+
+You will see this (above image) at the top of your screen with the status "Rebuilding". Before being able to use the DB, you will need to wait for the status to change to "Running". This will take a while
+![alt text](./assets/rebuilding.png)
+
+Once done, it will change to the following:
+![alt text](./assets/running.png)
+
+You may then copy the secret key (Service URI under Connection Information) and paste that as the value for the DATABASE_URI Environment variable in your .env.example file.
+
+Once both the DATABASE_URI & SECRET variable are assigned valid values, you may rename the (.env.example) file to (.env) and proceed to install the other dependencies.
 
 ### Dependencies (Front-End)
 
@@ -50,7 +75,7 @@ Run Backend Server (Note: If the env file has been setup properly, the backend w
 The backend will run on http://localhost:8000 and the frontend will run on http://localhost:3000
 For the purpose of local development, CORS has been enabled. This will be disabled for build
 
-You may now run the app locally on http://localhost:3000
+You may now run a local instance of your app on http://localhost:3000
 Alternatively, you may skip this process and access the deployed app on: https://cvwo-assignment-4v24.onrender.com
 
 # User Guide
