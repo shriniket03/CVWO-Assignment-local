@@ -48,7 +48,7 @@ Once done, it will change to the following:
 
 You may then copy the secret key (Service URI under Connection Information) and paste that as the value for the DATABASE_URI Environment variable in your .env.example file.
 
-Once both the DATABASE_URI & SECRET variable are assigned valid values, you may rename the (.env.example) file to (.env) and proceed to install the other dependencies.
+Once both the DATABASE_URI & SECRET variable are assigned valid values, you may rename the (.env.example) file to (.env) and proceed to install the other dependencies by continuing with the following steps.
 
 ### Dependencies (Front-End)
 
